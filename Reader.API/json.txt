@@ -1,0 +1,23 @@
+{
+  "geometry": [
+    {
+      "positions": [
+        {"x": 0, "y": 0, "z": 0},
+		{"x": 20, "y": 0, "z": 0},
+		{"x": 10,  "y": 10, "z": 0}		
+      ],
+      "name": "Triangle"
+    },
+	 {
+      "positions": [
+        {"x": 0, "y": 0, "z": 0},
+		{"x": 20, "y": 0, "z": 0},
+		{"x": 20, "y": 20, "z": 0}		
+      ],
+      "name": "Rectangle"
+    }
+  ],
+  "name": "string",
+  "creationDate": "2021-09-08T17:40:45.195Z",
+  "isInspected": true
+}

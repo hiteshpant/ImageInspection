@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports: 
+     - 5672:5672
+     - 15672:15672
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+
+    volumes:
+      - Inspector-sqldata:/var/opt/mssql
+  reader.api:
+    image: hiteshpant/readerapi
+    build:
+      context: .
+      dockerfile: Reader.API/Dockerfile
+    ports:
+      - "8080:80"
+      - "9101:81"
+    depends_on:
+      - sqldata
+      - rabbitmq    
+
+  inspector.api:
+    image: hiteshpant/inspectorapi
+    build:
+      context: .
+      dockerfile: Inspector.API/Dockerfile
+    depends_on:
+        - rabbitmq
+    ports:
+      - "8081:80"
+      - "9102:81"
+    
+
